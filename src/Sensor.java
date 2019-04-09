@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class Sensor {
     private int angle;
@@ -16,12 +15,15 @@ public class Sensor {
         this.angle = angle;
     }
 
-    public int distance(Point loc, int angle){
+    public double distance(Point loc, int angle) {
         //tan(this.angle + angle)*loc.x + n = loc.y
-        double x = Math.tan(Math.toRadians(this.angle + angle))*loc.x;
-        double y = Math.tan(Math.toRadians(this.angle + angle))*loc.x + loc.y;
-
-
-        return Structure.readMap(loc.x, loc.y);
+        int y = 3, d;
+        for (int i = 0; i < 30; i++) {
+            y = (int) (Math.tan(Math.toRadians(this.angle + angle)) * (loc.x - i) + loc.y);
+            d = Structure.readMap(i, y);
+            if (d == 0)
+                return Math.sqrt((Math.pow(loc.x - i, 2) + Math.pow(loc.y - y, 2)));
+        }
+        return 3;
     }
 }
