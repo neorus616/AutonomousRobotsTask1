@@ -1,8 +1,16 @@
 public class Drone {
-    public Sensor[] sensors = new Sensor[3];
-    public double acc;
-    public Gyro gyro;
-    public double speed;
+    public static final double MAX_ACC = 2;  // meter / sec^2
+    public static final double MAX_SPEED = 3; //meter / sec
+    public static final double MAX_YAW_SPEED = 180; //deg/sec  (aka  1.0 PI)
+    public static final double DT = 1.0 / 50; // ms ==> 50Hz
+    private Sensor[] sensors;
+    private double acc;
+    private Gyro gyro;
+    private double speed;
+
+    public Drone() {
+        sensors = new Sensor[3];
+    }
 
     public void init() {
         sensors[0].setAngle(330);
@@ -13,13 +21,31 @@ public class Drone {
         acc = 0;
     }
 
-    public void moveForward(int x) {
+    public void moveForward() {
         acc = acc + 1;
-        if (speed + acc <= 3)
+        if (acc >= MAX_ACC)
+            acc = MAX_ACC;
+        if (speed + acc <= MAX_SPEED)
             speed = speed + acc;
-        else speed = 3;
+        else speed = MAX_SPEED;
     }
 
+    public void moveLeft() {
+        gyro.setAngle(gyro.getAngle() - 1);
+    }
+
+    public void moveRight() {
+        gyro.setAngle(gyro.getAngle() + 1);
+    }
+
+    public void moveBacward() {
+        acc = acc - 1;
+        if (acc < -MAX_ACC)
+            acc = -MAX_ACC;
+        if (speed + acc >= -MAX_SPEED)
+            speed = speed + acc;
+        else speed = -MAX_SPEED;
+    }
 
 
 }
