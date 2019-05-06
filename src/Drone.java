@@ -1,7 +1,6 @@
 public class Drone {
     public static final double MAX_ACC = 2;  // meter / sec^2
     public static final double MAX_SPEED = 3; //meter / sec
-    public static final double MAX_YAW_SPEED = 180; //deg/sec  (aka  1.0 PI)
     public static final double DT = 1.0 / 50; // ms ==> 50Hz
     private Sensor[] sensors;
     private double acc;
