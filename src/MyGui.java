@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class MyGui extends JPanel {
 
 	private BufferedImage canvas;
-	private static final File f=new File("C:\\Users\\arbel\\Downloads\\Ex1_code_maps(1)\\Ex1_code_maps\\p11.png");
+	private static final File f=new File("p11.png");
 	static Structure s= new Structure(f);
 	public Drone drone;
 
