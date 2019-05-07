@@ -2,7 +2,11 @@ import java.awt.*;
 
 public class Sensor {
     private int angle;
-
+    
+    public Sensor() {
+        this.angle = 0;
+    }
+    
     public Sensor(int angle) {
         this.angle = angle;
     }

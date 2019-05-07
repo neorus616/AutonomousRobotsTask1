@@ -11,14 +11,20 @@ import javax.swing.JPanel;
 public class MyGui extends JPanel {
 
 	private BufferedImage canvas;
-	private static final File f=new File("C:\\Users\\Rachel\\Downloads\\study\\ROBOTS\\Ex1_code_maps\\Ex1_code_maps\\p11.png");
+	private static final File f=new File("C:\\Users\\arbel\\Downloads\\Ex1_code_maps(1)\\Ex1_code_maps\\p11.png");
 	static Structure s= new Structure(f);
-	
+	public Drone drone;
+
 	public MyGui(int width, int height) {
 		canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		fillCanvas(Color.LIGHT_GRAY);
+		drone=new Drone();
+		drone.init();
 
+	}
 
+	public void drawDrone() {
+		drawRect(Color.RED,drone.location.x, drone.location.y,3,3 );
 	}
 
 	public Dimension getPreferredSize() {
@@ -36,7 +42,8 @@ public class MyGui extends JPanel {
 		int color = c.getRGB();
 		for (int x = 0; x < canvas.getWidth(); x++) {
 			for (int y = 0; y < canvas.getHeight(); y++) {
-				canvas.setRGB(x, y, color);
+				if(s.readMap(x, y)==0)
+					canvas.setRGB(x, y, color);
 			}
 		}
 		repaint();
@@ -69,7 +76,7 @@ public class MyGui extends JPanel {
 		}
 		repaint();
 	}
-	
+
 
 
 
@@ -84,8 +91,15 @@ public class MyGui extends JPanel {
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel.drawRect(Color.RED, 0, 0, s.getWidth()/2, s.getHeight()/2);
-		panel.drawLine(Color.BLUE, 0, 0, 500, 500);
+
+		//panel.fillCanvas(Color.BLACK);
+		//		panel.drawRect(Color.RED, 90, 60,15, 15);
+		//		panel.drawLine(Color.BLUE, 0, 0, 500, 500);
+
+		panel.drawDrone();
+
+		
+		
 	}
 
 
