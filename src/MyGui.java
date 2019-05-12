@@ -107,10 +107,13 @@ public class MyGui extends JPanel implements KeyListener {
                 break;
             case 68:
                 drone.moveRight();
+                break;
             case 87:
                 drone.acceleration();
+                break;
             case 83:
                 drone.deceleration();
+                break;
         }
 
     }
