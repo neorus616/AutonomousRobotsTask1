@@ -1,4 +1,4 @@
-import java.awt.Point;
+import java.awt.*;
 import java.util.Vector;
 
 public class Drone {
@@ -9,10 +9,12 @@ public class Drone {
     private double acc;
     private Gyro gyro;
     private double speed;
-    public Point location;
-    double x,y;
+    Point location;
+    private double x, y;
+    private MyGui myGui;
 
-    public Drone() {
+    public Drone(MyGui myGui) {
+        this.myGui = myGui;
         sensors = new Vector<Sensor>();
     }
 
@@ -23,7 +25,7 @@ public class Drone {
         gyro = new Gyro();
         speed = 0;
         acc = 0;
-        location= new Point(90,80);
+        location = new Point(90, 80);
     }
 
     public void acceleration() {
@@ -33,7 +35,6 @@ public class Drone {
         if (speed + acc <= MAX_SPEED)
             speed = speed + acc;
         else speed = MAX_SPEED;
-        
     }
 
     public void moveLeft() {
@@ -52,15 +53,14 @@ public class Drone {
             speed = speed + acc;
         else speed = -MAX_SPEED;
     }
-    
+
     public void fly() {
 //    	System.out.println(gyro.getAngle());
-    	 x =( Math.sin(Math.toRadians(gyro.getAngle()))*10 + location.x);
-    	 y =( Math.cos(Math.toRadians(gyro.getAngle()))*10 + location.y);
-    	location.setLocation(x, y);
-    	
+        x = (Math.sin(Math.toRadians(gyro.getAngle())) * 10 + location.x);
+        y = (Math.cos(Math.toRadians(gyro.getAngle())) * 10 + location.y);
+        location.setLocation(x, y);
+
     }
-    
 
 
 }

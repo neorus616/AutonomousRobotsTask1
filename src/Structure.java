@@ -14,7 +14,7 @@ public class Structure {
             for (int x = 0; x < newImage.getWidth(); x++) {
                 pixels[x] = new byte[newImage.getHeight()];
                 for (int y = 0; y < newImage.getHeight(); y++)
-                    pixels[x][y] = ((byte)newImage.getRGB(x, y) == 0) ? 0 : (byte) 1;
+                    pixels[x][y] = ((byte) newImage.getRGB(x, y) == 0) ? 0 : (byte) 1;
             }
         } catch (IOException e) {
             e.printStackTrace();
